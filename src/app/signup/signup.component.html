@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Titre</title>
+    </head>
+
+    <body>
+    
+    <div id="login">
+        <h2>Sign Up</h2>
+        <hr>
+        <form #signup="ngForm">
+            <mat-form-field>
+                <mat-label>
+                    Email:
+                </mat-label><br>
+                <input matInput name="email" [(ngModel)]="user.email" required email type="text"><br>
+            </mat-form-field><br>
+            <mat-form-field>
+            <mat-label>
+                Password:
+            </mat-label><br>
+            <input matInput required name="password" [(ngModel)]="user.password" type="password"><br>
+            </mat-form-field><br>
+            <mat-form-field>
+                <mat-label>
+                    Nom:
+                </mat-label><br>
+                <input matInput name="lastName" [(ngModel)]="user.lastName" required type="text"><br>
+            </mat-form-field><br>
+            <mat-form-field>
+                <mat-label>
+                    Prénom:
+                </mat-label><br>
+                <input matInput required name="firstName" [(ngModel)]="user.firstName" type="text"><br>
+            </mat-form-field><br>
+            <mat-form-field appearance="fill">
+                <mat-label>
+                    Role:
+                </mat-label><br>
+                <mat-select name="role" [(ngModel)]="user.role">
+                    <mat-option value="ENSEIGNANT">Enseignant</mat-option>
+                    <mat-option value="ETUDIANT">Etudiant</mat-option>
+                </mat-select>
+            </mat-form-field><br>
+            <mat-form-field appearance="fill" *ngIf="user.role=='ENSEIGNANT'">
+                <mat-label>
+                    Matiére:
+                </mat-label><br>
+                <mat-select name="matiere" [(ngModel)]="user.matiere">
+                    <mat-option value="Physique">Physique</mat-option>
+                    <mat-option value="Mathematique">Mathematique</mat-option>
+                </mat-select>
+            </mat-form-field><br>
+            
+            <div id="loginb"><button [disabled]="signup.invalid" (click)="addUser()" mat-raised-button color="primary" type="submit">Sign Up</button></div>
+        </form>
+
+    </div>
+    </body>
+</html>

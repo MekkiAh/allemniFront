@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Titre</title>
+    </head>
+
+    <body>
+        <div id="publicationForm" *ngIf="connected=='false'">
+            <!-- <div *ngIf="currentUser.role=='ENSEIGNANT'"> -->
+                <form >
+                    <mat-form-field id="pubText">
+                        <textarea  matInput name="pubDesc" [(ngModel)]="publication.description" required type="text"></textarea>
+                    </mat-form-field>
+                    <div id="pubButton">
+                        <button mat-raised-button color="primary" (click)="addPub()" type="submit">Publier</button>
+                    </div>
+                </form>
+            <!-- </div> -->
+        </div>
+        <div id="publications">
+            <div class="pub" *ngFor="let publication of publications">
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <div mat-card-avatar class="example-header-image" style="position: relative;"></div>
+                        <mat-card-title >
+                            <a href="publication/{{publication.idEnseignant}}" *ngIf="connected=='true'">Shiba</a>
+                            <span *ngIf="connected==false">Shiba</span>
+                        </mat-card-title>
+                        <mat-card-subtitle>{{publication.date}}</mat-card-subtitle>
+                        <div fxFlex></div>
+                        <div fxLayoutAlign="center center" style="position: absolute; right: 3px;" >
+                            <button mat-button (click)="deletePub(publication.id)" 
+                            *ngIf="connected==true || currentUser.id==publication.utilisateur.id" >Delete</button>
+                        </div>
+
+                    </mat-card-header>
+                    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                    <mat-card-content>
+                    <p>
+                        {{publication.description}}
+                    </p>
+                    </mat-card-content>
+              </mat-card>
+            </div>
+
+        </div>
+
+    </body>
+</html>
