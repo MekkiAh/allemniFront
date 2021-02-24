@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'publications', component: PublicationComponent},
   { path: 'dashboard', component: DashboardComponent},
   { path: 'publication/:id', component: PublicationPageComponent},
-  { path: '**', redirectTo: 'publications' }
+  { path: '**', redirectTo: 'login' }
 
 ];
 

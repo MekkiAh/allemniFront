@@ -21,6 +21,6 @@ export class PublicationPageComponent implements OnInit {
     this.http.get("https://hidden-coast-23643.herokuapp.com/api/utilisateurs/"+this.id)
     .subscribe(res=> this.publicationDetails=res);
     
- 
+
     }
 }
