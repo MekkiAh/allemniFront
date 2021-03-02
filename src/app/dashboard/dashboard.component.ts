@@ -27,12 +27,14 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     if(localStorage.getItem('connected')=="false")
     {
-      this.router.navigate(['/login']);
+      window.location.href="/publications";
+
     }
     else{
       if(JSON.parse(localStorage.getItem('user')).role!="ENSEIGNANT")
       {
-        this.router.navigate(['/login']);
+        localStorage.setItem("connected","false");
+        window.location.href="/login";
   
       }
     }

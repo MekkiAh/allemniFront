@@ -17,12 +17,15 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', String(res));//bech yekhdemha
         localStorage.setItem('user', JSON.stringify(res));//bech yekhdemha
         localStorage.setItem('connected', "true");
-        this.router.navigate(['/publications']);
+       // this.router.navigate(['/publications']);
+        window.location.href="/publications";
       }
       ,
       (err)=>
       {
         console.log("err"+JSON.stringify(this.userDetails));  
+
+
       })
 
   }

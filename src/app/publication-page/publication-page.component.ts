@@ -14,7 +14,7 @@ export class PublicationPageComponent implements OnInit {
   ngOnInit(): void {
     if(localStorage.getItem('connected')=="false")
     {
-      this.router.navigate(['/login']);
+      window.location.href="/login";
 
     }
     this.route.params.subscribe((params: any) => {this.id = params.id;  });
