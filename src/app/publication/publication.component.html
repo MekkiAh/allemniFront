@@ -6,8 +6,8 @@
     </head>
 
     <body>
-        <div id="publicationForm" *ngIf="connected=='false'">
-            <!-- <div *ngIf="currentUser.role=='ENSEIGNANT'"> -->
+        <div id="publicationForm" *ngIf="connected=='true'">
+             <div *ngIf="currentUser.role=='ENSEIGNANT'"> 
                 <form >
                     <mat-form-field id="pubText">
                         <textarea  matInput name="pubDesc" [(ngModel)]="publication.description" required type="text"></textarea>
@@ -16,7 +16,7 @@
                         <button mat-raised-button color="primary" (click)="addPub()" type="submit">Publier</button>
                     </div>
                 </form>
-            <!-- </div> -->
+             </div> 
         </div>
         <div id="publications">
             <div class="pub" *ngFor="let publication of publications">
@@ -24,18 +24,19 @@
                     <mat-card-header>
                         <div mat-card-avatar class="example-header-image" style="position: relative;"></div>
                         <mat-card-title >
-                            <a href="publication/{{publication.idEnseignant}}" *ngIf="connected=='true'">Shiba</a>
-                            <span *ngIf="connected==false">Shiba</span>
+                            <a href="publication/{{publication.publication_enseignant.id}}" *ngIf="connected=='true'">{{publication.publication_enseignant.lastName}} {{publication.publication_enseignant.firstName}}</a>
+                            <span *ngIf="connected=='false'">{{publication.publication_enseignant.lastName}} {{publication.publication_enseignant.firstName}}</span>
                         </mat-card-title>
                         <mat-card-subtitle>{{publication.date}}</mat-card-subtitle>
                         <div fxFlex></div>
                         <div fxLayoutAlign="center center" style="position: absolute; right: 3px;" >
                             <button mat-button (click)="deletePub(publication.id)" 
-                            *ngIf="connected==true || currentUser.id==publication.utilisateur.id" >Delete</button>
+                            *ngIf="connected==='true' && currentUser.id == publication.publication_enseignant.id" >Delete</button>
                         </div>
 
                     </mat-card-header>
-                    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                    <img mat-card-image *ngIf="publication.publication_enseignant.matiere === 'Mathematique'" src="https://upload.wikimedia.org/wikipedia/commons/c/c2/CMAP_-_Centre_de_Math%C3%A9matiques_Appliqu%C3%A9es_de_l%27Ecole_polytechnique.jpg" alt="Photo of a Shiba Inu">
+                    <img mat-card-image *ngIf="publication.publication_enseignant.matiere === 'Physique'" src="https://www.letudiant.fr/static/uploads/mediatheque/ETU_ETU/4/9/2232849-spe-physique-chimie-766x438.jpg" alt="Photo of a Shiba Inu">
                     <mat-card-content>
                     <p>
                         {{publication.description}}

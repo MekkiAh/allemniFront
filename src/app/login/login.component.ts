@@ -11,13 +11,12 @@ export class LoginComponent implements OnInit {
   public userDetails = new UserDetails("","");
   constructor(private http:HttpClient , public router : Router) { }
   connect() {
-    this.http.post("",this.userDetails).subscribe(
-      (res)=>
+    this.http.post("http://127.0.0.1:8000/api/login",this.userDetails).subscribe(
+      (res: Array<any>)=>
       {
-        localStorage.setItem('token', String(res));//bech yekhdemha
-        localStorage.setItem('user', JSON.stringify(res));//bech yekhdemha
+        console.log("response",res)
+        localStorage.setItem('user', JSON.stringify(res[0]));//bech yekhdemha
         localStorage.setItem('connected', "true");
-       // this.router.navigate(['/publications']);
         window.location.href="/publications";
       }
       ,
@@ -30,6 +29,7 @@ export class LoginComponent implements OnInit {
 
   }
   ngOnInit(): void {
+
     localStorage.setItem('connected', 'false');
     localStorage.setItem('user','');
     localStorage.setItem('token','');

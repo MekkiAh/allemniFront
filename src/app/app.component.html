@@ -28,7 +28,7 @@
         <mat-nav-list>
             <div *ngIf="connected=='true'">
                 <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png" alt="">
-                <p>{{currentUser.firstName}} {{currentUser.lastName}}</p>
+                <!-- <p>{{currentUser.firstName}} {{currentUser.lastName}}</p> -->
             </div>
             <a mat-list-item routerLink="/login" *ngIf="connected=='false'"><span class="material-icons">
                 login
@@ -39,10 +39,15 @@
             <a mat-list-item routerLink="/publications"><span class="material-icons">
                 description
                 </span>Publications</a>
-            <a mat-list-item routerLink="/dashboard"
-             *ngIf="connected=='true' && currentUser.role=='ENSEIGNANT'"><span class="material-icons">
-                leaderboard
-                </span>Demandes</a>
+            <a mat-list-item href='/ajouterSceance'
+                *ngIf="connected=='true' && currentUser.role==='ENSEIGNANT'"><span class="material-icons">
+                    control_point
+                    </span>Ajouter Sceance</a>
+            <a mat-list-item  (click)="deconnecter()"
+             *ngIf="connected=='true'"><span class="material-icons">
+                logout
+                </span>Log out</a>
+           
 
 
         </mat-nav-list>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Titre</title>
+    </head>
+
+    <body>
+    
+    <div id="login">
+        <h2>Ajouter Sceance</h2>
+        <hr>
+        <form #signup="ngForm">
+           
+            <mat-form-field>
+            <mat-label>
+                titre:
+            </mat-label><br>
+            <input matInput required name="titre" [(ngModel)]="sceance.titre" type="text"><br>
+            </mat-form-field><br>
+            <mat-form-field>
+                <mat-label>
+                    heureDebut:
+                </mat-label><br>
+                <input matInput name="heureDebut" [(ngModel)]="sceance.heureDebut" required type="text"><br>
+            </mat-form-field><br>
+            <mat-form-field>
+                <mat-label>
+                    heureFin:
+                </mat-label><br>
+                <input matInput required name="heureFin" [(ngModel)]="sceance.heureFin" type="text"><br>
+            </mat-form-field><br>
+            <mat-form-field>
+                <mat-label>
+                    Capacite:
+                </mat-label><br>
+                <input matInput required name="capacite" [(ngModel)]="sceance.capacite" type="number"><br>
+            </mat-form-field><br>
+           
+            <mat-form-field appearance="fill" >
+                <mat-label>
+                    Jour:
+                </mat-label><br>
+                <mat-select name="jour" [(ngModel)]="sceance.jour">
+                    <mat-option value="lundi">lundi</mat-option>
+                    <mat-option value="mardi">mardi</mat-option>
+                    <mat-option value="mercredi">mercredi</mat-option>
+                    <mat-option value="jeudi">jeudi</mat-option>
+                    <mat-option value="vendredi">vendredi</mat-option>
+                    <mat-option value="samedi">samedi</mat-option>
+                </mat-select>
+            </mat-form-field><br>
+            
+            <div id="loginb"><button [disabled]="signup.invalid" (click)="addSceance()" mat-raised-button color="primary" type="submit">Ajouter Sceance</button></div>
+        </form>
+
+    </div>
+    </body>
+</html>

@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "allemni"
+  "defaultProject": "allemni",
+  "cli": {
+    "analytics": false
+  }
 }

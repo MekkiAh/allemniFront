@@ -8,10 +8,13 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  public user = new User("","","","","","",0)
+  public user = new User("","","","","","",0,"")
   constructor(private http : HttpClient) { }
   addUser(){
-    this.http.post("https://hidden-coast-23643.herokuapp.com/utilisateurs",this.user).subscribe();
+    console.log("this. user",this.user)
+    this.http.post("http://127.0.0.1:8000/api/utilisateurs",this.user).subscribe(
+      res=>   {window.location.href="/login"}
+    );
   }
   ngOnInit(): void {
   }

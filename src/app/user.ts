@@ -6,5 +6,7 @@ export class User {
     public lastName : string,
     public adress :string,
     public role  :string, 
-    age :  number){}
+    public age :  number,
+    public matiere : string
+    ){}
 }

@@ -45,6 +45,7 @@ import { PublicationComponent } from './publication/publication.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule } from '@angular/forms';
 import { PublicationPageComponent } from './publication-page/publication-page.component';
+import { CreateSceanceComponent } from './create-sceance/create-sceance.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { PublicationPageComponent } from './publication-page/publication-page.co
     SignupComponent,
     PublicationComponent,
     DashboardComponent,
-    PublicationPageComponent
+    PublicationPageComponent,
+    CreateSceanceComponent
   ],
   imports: [
     FormsModule,

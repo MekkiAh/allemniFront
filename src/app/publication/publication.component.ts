@@ -10,29 +10,39 @@ export class PublicationComponent implements OnInit {
   public publications : any=[];
   public currentUser : any;
   public connected : string;
-  public publication = new Publication("","","","") ;
+  public publication = new Publication("","","","","") ;
   constructor(private http : HttpClient) { }
   deletePub(pubId : any){
-    this.http.delete('https://hidden-coast-23643.herokuapp.com/api/publications/'+pubId)
+    this.http.delete('http://127.0.0.1:8000/api/publications/'+pubId)
     .subscribe(
-        ()=>this.http.get('https://hidden-coast-23643.herokuapp.com/api/publications')
+        ()=>this.http.get('http://127.0.0.1:8000/api/publications')
         .subscribe(res=> this.publications=res) 
     );
   }
   addPub(pubText: string){
     let today = new Date().toISOString().slice(0, 10);
     this.publication.date=today;
-    this.http.post("https://hidden-coast-23643.herokuapp.com/api/publications",this.publication).subscribe();
+    console.log("pub body",this.publication)
+    this.http.post("http://127.0.0.1:8000/api/publications",this.publication).subscribe(res => {
+      this.http.get('http://127.0.0.1:8000/api/publications')
+        .subscribe(res=> this.publications=res) 
+    });
 
   }
+
+  handleInscription(id){
+    console.log("id",id);
+  }
+
   ngOnInit(): void {
     this.connected=localStorage.getItem("connected");
     if(this.connected=="true")
     {
       this.currentUser = JSON.parse(localStorage.getItem("user"));
-      this.publication = new Publication("3","","","") ;
+      console.log("current",this.currentUser);
+      this.publication = new Publication(this.currentUser.id,"whatever","","",this.currentUser.matiere) ;
     }
-    this.http.get('https://hidden-coast-23643.herokuapp.com/api/publications').subscribe(res => this.publications=res)
+    this.http.get('http://127.0.0.1:8000/api/publications').subscribe(res => this.publications=res)
     setTimeout(()=>{
       console.log(this.publications)
 

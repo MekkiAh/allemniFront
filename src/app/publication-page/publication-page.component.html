@@ -1,11 +1,70 @@
 <div id="page">
-    <div id="userDetails">
- <!--   <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png" alt="">
-        <p>{{publicationDetails.firstName}} {{publicationDetails.lastName}}</p>
-        <p>{{publicationDetails.email}}</p>   
-        <p>{{publicationDetails.age}}</p> -->
-    </div>
-    <div id="seances">
+    <div id="user-details">
 
+        <img class="user-image" src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png" alt="">
+ 
+        <div class="user-info">
+            <div>
+                <h1>{{publicationDetails.firstName}} {{publicationDetails.lastName}}</h1>
+                <h3>{{publicationDetails.email}}</h3>   
+                <p>{{publicationDetails.adress}}</p>
+            </div>
+            <div class="bio">
+                <p>{{publicationDetails.bio}}</p>
+            </div>
+            
+        </div>
+        <div class="rating-section">
+            <h2>rating {{rating}}</h2>
+            <div class="star-section">
+                <span (click)="submitRate(1)" class="material-icons rate">
+                    star_rate
+                </span>    
+                <span (click)="submitRate(2)" class="material-icons rate">
+                    star_rate
+                </span> 
+                <span (click)="submitRate(3)" class="material-icons rate">
+                    star_rate
+                </span> 
+                <span (click)="submitRate(4)" class="material-icons rate">
+                    star_rate
+                </span> 
+                <span (click)="submitRate(5)" class="material-icons rate">
+                    star_rate
+                </span>                 
+            </div>
+        </div>
+    </div>
+    <div class="sceances">
+        <h1 style="align-self: flex-start;margin-left: 2rem;">Sceances</h1>
+        <div class="sceance" style="margin-bottom:5px;">
+            <div class="titre">Titre</div>
+            <div class="jour">Jour</div>
+            <div class="duree">
+                Duree
+            </div>
+            <div class="capacite">Capacite</div>
+            <div class="etat">Etat</div>
+            <div class="cta">
+                Actions
+            </div>
+        </div>
+        <div class="sceance" *ngFor="let sceance of publicationDetails.enseignant_sceance; let index=index">
+            <div class="titre">{{sceance.titre}}</div>
+            <div class="jour">{{sceance.jour}}</div>
+            <div class="duree">
+                <div class="heure-debut">{{sceance.heureDebut}}</div> -
+                <div class="heure-fin">{{sceance.heureFin}}</div>
+            </div>
+            <div class="capacite">{{sceance.capacite}}</div>
+            <div class="etat"  *ngIf="sceanceInscriptions[index] === sceance.capacite">Saturee</div>
+            <div class="etat"  *ngIf="sceanceInscriptions[index] !== sceance.capacite">disponible</div>
+            <div class="cta">
+                <button *ngIf="buttonPressed ===  true" mat-raised-button (click)="handleDesinscription(currentUser.id,sceance.id)" color="secondary"  >Desinscrire</button>
+                <button *ngIf="buttonPressed === false"  mat-raised-button (click)="handleInscription(currentUser.id,sceance.id)" color="primary" [disabled]="sceanceInscriptions[index] === sceance.capacite">s'inscrire</button> 
+
+            </div>
+        </div>
     </div>
 </div>
+
